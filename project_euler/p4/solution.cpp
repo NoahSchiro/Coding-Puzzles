@@ -40,8 +40,9 @@ int main() {
 
 			if(isPalindrome(i*j)) {
 				best = std::max(i*j, best);
-				std::cout << best << "\n";
 			}
 		}
 	}
+
+	std::cout << best << "\n";
 }
