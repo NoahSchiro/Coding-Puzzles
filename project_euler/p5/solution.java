@@ -5,12 +5,14 @@ What is the smallest positive number that is evenly divisible by all of the numb
 */
 class Solution {
 
-	static void solve(int divisor) {
+	static int solve(int divisor) {
 
 		int ans = 20;
 
+		boolean flag = true;
+
 		//While we have not found a number
-		while(true) {
+		while(flag) {
 
 			//For all the divisors
 			for(int i = 1; i <= divisor; i++) {
@@ -30,6 +32,8 @@ class Solution {
 			//Increment
 			ans++;
 		}
+
+		return -1;
 	}
 
 	public static void main(String[] args) {
