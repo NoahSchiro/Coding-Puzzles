@@ -1,0 +1,7 @@
+# Any general compiler language
+*.exe
+*.out
+
+# Haskell stuff
+*.o
+*.hi
