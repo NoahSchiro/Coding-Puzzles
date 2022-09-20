@@ -33,12 +33,13 @@ int main() {
 	while(counter < 10001) {
 
 		if(isPrime(index)) {
-			std::cout << index << "\n";
 			counter++;
 		}
 
 		index++;
 	}
+
+	std::cout << index << "\n";
 
 	return 0;
 }

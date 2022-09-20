@@ -29,12 +29,14 @@ class Solution {
 		while(counter < 10001) {
 
 			if(isPrime(index)) {
-				System.out.println(index);
 				counter++;
 			}
 
 			index++;
 		}
+
+		
+		System.out.println(index);
 
 	}
 };
