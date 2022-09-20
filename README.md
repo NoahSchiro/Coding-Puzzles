@@ -10,4 +10,6 @@ This repository serves as a home for all of the coding puzzles I have solved, an
 - [ ] Rust/Go (haven't decided yet)
 
 ## Future plans:
-Add a robust tester (maybe in bash?) that will compile all problems, run them, check the results, and compare the languages against each other
+ - [ ] Add a robust tester that will compile all problems, run them, check the results
+ - [ ] Create a benchmarking suite to compare the languages speed and memory usage against each other
+ - [ ] Create a tool that will clear out the extra garbage files that compiled languages produce
