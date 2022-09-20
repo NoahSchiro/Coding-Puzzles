@@ -11,10 +11,10 @@
 
 module Main where
 
-fib 0 = 1
-fib 1 = 1
-fib n = fib (n - 1) + fib (n - 2)
+-- Infinite list to generate fibs
+fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
-fibLowerThan4M = [fib x | x <- [1..4000000]]
+-- Only take an x from fibs while that x is less than 4 mil. Make sure that it is divisible by 2, then sum
+ans = sum [x | x <- takeWhile(< 4000000) fibs, mod x 2 == 0]
 
-main = do print fibLowerThan4M
+main = do print ans
