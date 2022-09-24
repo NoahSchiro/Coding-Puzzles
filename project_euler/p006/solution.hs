@@ -28,4 +28,4 @@ sumOfSquares n = sum [x ^ 2 | x <- [1..n]]
 squareOfSum :: Int -> Int
 squareOfSum n = (sum [1..n]) ^ 2
 
-main = do print ((squareOfSum 100) - (sumOfSquares 100))
+main = do print $ (squareOfSum 100) - (sumOfSquares 100)

@@ -3,18 +3,10 @@
 
 module Main where
 
-primeFactor :: Int -> Int -> Int
-primeFactor num divisor = 
+newPrimeFactor :: Int -> Int -> Int
+newPrimeFactor num divisor
+   | num <= divisor              = divisor
+   | (mod num divisor) == 0      = primeFactor (div num divisor) divisor
+   | otherwise                   = primeFactor num (divisor + 1)
 
-   -- Base case is we reach a small number
-   if num <= divisor then divisor else
-
-   -- If it is divisible
-   if ((mod num divisor) == 0) then
-      
-      primeFactor (div num divisor) divisor -- Divide and recurse
-
-   else -- If it is not divisible then increment divisor 
-      primeFactor num (divisor + 1)
-
-main = do print (primeFactor 600851475143 2)
+main = do print (newPrimeFactor 600851475143 2)
