@@ -33,7 +33,6 @@ split xs knife = splitAt knife xs
 
 --P18
 slice :: [a] -> Int -> Int -> [a]
---slice xs start stop = p18helper xs start stop 1
 slice xs start stop = take (stop+1 - start) (drop (start-1) xs)
 
 --P19
