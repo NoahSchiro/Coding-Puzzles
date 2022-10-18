@@ -24,23 +24,37 @@ What is the value of the first triangle number to have over five hundred divisor
 
 int divisors(int input) {
 
-     //One for itself, one for 1
-     int count = 2;
+    int count = 0;
 
-     for(int i = 1; i < sqrt(input); i++) {
+    // Note that this loop runs till square root
+    for (int i = 1; i <= sqrt(input); i++) {
+        if (input % i == 0) {
 
-          if(input % i == 0) {
-               count+=2;
-          }
-     }
+            // If divisors are equal, count only one
+            if (input / i == i) {
+                count++;
 
-     return count;
+            //Otherwise count them both
+            } else {
+
+                count += 2;
+            }
+        }
+    }
+
+    return count;
 }
 
 int main() {
 
-     for(int i = 1; i < 10; i++) {
+    int triangleNumIndex = 1;
+    int triangleNum = 0;
 
-          std::cout << i << ", " << divisors(i) << std::endl;
-     }
+    while(divisors(triangleNum) < 500) {
+        triangleNum += triangleNumIndex;
+        triangleNumIndex++;
+    }
+
+    std::cout << triangleNum << std::endl;
+
 }

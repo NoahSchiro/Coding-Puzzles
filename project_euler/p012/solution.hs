@@ -32,4 +32,4 @@ solve index
     where x = length $ divisors (triangleNumbers !! index)
 
 main :: IO ()
-main = do putStrLn "Hello"
+main = do print (solve 1)
