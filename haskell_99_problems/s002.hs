@@ -1,10 +1,18 @@
---P11
--- I don't want to do this one right now
--- since it requires me to define my own 
--- data types
+import Data.List
 
---P12 and 13
--- see above
+--P11
+-- Define an encoding as a tuple
+encodeModified :: Eq a => [a] -> [(Int, a)]  
+encodeModified xs = [(length x, head x) | x <- (group xs)]
+
+--P12
+decodeModified :: [(Int, a)] -> [a]
+decodeModified [] = []
+decodeModified xs = take (fst expand) (repeat $ snd expand) ++ decodeModified (tail xs)
+    where
+        expand = head xs
+
+--P13 is effectively the same as P11
 
 --P14
 duplicate :: [a] -> [a]

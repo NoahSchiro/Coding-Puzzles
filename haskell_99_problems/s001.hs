@@ -3,7 +3,7 @@ import Data.Bool
 import Data.Typeable
 import Data.List
 
---P1 (i'm guessing I am not allowed to use last)
+--P1
 myLast :: [a] -> a
 myLast xs = head $ reverse xs
 
@@ -27,7 +27,7 @@ myReverse xs = reverse xs
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome xs = ((reverse xs) == xs)
 
---P7 (non functional)
+--P7
 data NestedList a = Elem a | List [NestedList a]
 myFlatten :: NestedList a -> [a]
 myFlatten (Elem x) = [x]
