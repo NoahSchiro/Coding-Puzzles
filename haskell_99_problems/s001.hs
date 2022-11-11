@@ -1,46 +1,55 @@
--- https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
-import Data.Bool
-import Data.Typeable
 import Data.List
 
---P1
-myLast :: [a] -> a
-myLast xs = head $ reverse xs
+--P11
+-- Define an encoding as a tuple
+encodeModified :: Eq a => [a] -> [(Int, a)]  
+encodeModified xs = [(length x, head x) | x <- (group xs)]
 
---P2
-myButLast :: [a] -> a
-myButLast xs = head $ tail $ reverse xs
+--P12
+decodeModified :: [(Int, a)] -> [a]
+decodeModified [] = []
+decodeModified xs = take (fst expand) (repeat $ snd expand) ++ decodeModified (tail xs)
+    where
+        expand = head xs
 
---P3
-elementAt :: [a] -> Int -> a
-elementAt xs index = xs !! (index - 1)
+--P13 is effectively the same as P11
 
---P4
-myLength :: [a] -> Int
-myLength xs = length xs
+--P14
+duplicate :: [a] -> [a]
+duplicate [] = []
+duplicate xs = head xs : head xs : (duplicate (tail xs))
 
---P5
-myReverse :: [a] -> [a]
-myReverse xs = reverse xs
+--P15
+repli :: [a] -> Int -> [a]
+repli xs n = concatMap (replicate n) xs
 
---P6
-isPalindrome :: Eq a => [a] -> Bool
-isPalindrome xs = ((reverse xs) == xs)
+--P16
+dropEvery :: [a] -> Int -> [a]
+dropEvery xs every = p15helper xs every 1
 
---P7
-data NestedList a = Elem a | List [NestedList a]
-myFlatten :: NestedList a -> [a]
-myFlatten (Elem x) = [x]
-myFlatten (List xs) = concatMap myFlatten xs 
+p15helper :: [a] -> Int -> Int -> [a]
+p15helper [] _ _ = []
+p15helper xs every count
+    --If it's an element to remove, then return the 
+    --tail, thereby removing the element
+    | mod count every == 0 = p15helper (tail xs) every (count + 1)
+    | otherwise            = head xs : p15helper (tail xs) every (count + 1)
 
---P8
-compress :: Eq a => [a] -> [a]
-compress xs = map head $ group xs
+--P17
+split :: [a] -> Int -> ([a], [a])
+split xs knife = splitAt knife xs
 
---P9
-pack :: Eq a => [a] -> [[a]]
-pack xs = group xs
+--P18
+slice :: [a] -> Int -> Int -> [a]
+slice xs start stop = take (stop+1 - start) (drop (start-1) xs)
 
---P10
-encode :: Eq a => [a] -> [(Int, a)]
-encode xs = [(length x, head x) | x <- group xs]
+--P19
+rotate :: [a] -> Int -> [a]
+rotate xs r = end ++ begin
+    where 
+        begin = take r xs
+        end   = drop r xs
+
+--P20
+removeAt :: [a] -> Int -> [a]
+removeAt xs k = take (k-1) xs ++ drop (k) xs

@@ -1,55 +1,38 @@
+import System.Random
 import Data.List
+import Data.Ord(comparing)
 
---P11
--- Define an encoding as a tuple
-encodeModified :: Eq a => [a] -> [(Int, a)]  
-encodeModified xs = [(length x, head x) | x <- (group xs)]
+--P21
+insertAt :: a -> [a] -> Int -> [a]
+insertAt insert xs pos = (take (pos-1) xs) ++ (insert : (drop (pos-1) xs))
 
---P12
-decodeModified :: [(Int, a)] -> [a]
-decodeModified [] = []
-decodeModified xs = take (fst expand) (repeat $ snd expand) ++ decodeModified (tail xs)
-    where
-        expand = head xs
+--P22
+range :: Int -> Int -> [Int]
+range start stop = [start..stop]
 
---P13 is effectively the same as P11
+--P23
+rndSelect :: RandomGen g => g -> [a] -> Int -> [a]
+rndSelect gen xs n = take n [ xs !! x | x <- randomRs (0, (length xs) - 1) gen]
 
---P14
-duplicate :: [a] -> [a]
-duplicate [] = []
-duplicate xs = head xs : head xs : (duplicate (tail xs))
+--P24
+--Draws n rangon numbers from the set 1..M
+lottery :: RandomGen g => g -> Int -> Int -> [Int]
+lottery gen n m = rndSelect gen [1..m] n
 
---P15
-repli :: [a] -> Int -> [a]
-repli xs n = concatMap (replicate n) xs
+--P25
+rndPerm :: RandomGen g => g -> [a] -> [a]
+rndPerm gen lst = perm !! fst (randomR (0, (length perm)-1) gen)
+    where perm = permutations lst
 
---P16
-dropEvery :: [a] -> Int -> [a]
-dropEvery xs every = p15helper xs every 1
+--P26
+combinations :: Int -> [a] -> [[a]]
+combinations 0 _  = [[]]
+combinations n xs = [y:ys | y:xs' <- tails xs
+                          , ys    <- combinations (n-1) xs']
 
-p15helper :: [a] -> Int -> Int -> [a]
-p15helper [] _ _ = []
-p15helper xs every count
-    --If it's an element to remove, then return the 
-    --tail, thereby removing the element
-    | mod count every == 0 = p15helper (tail xs) every (count + 1)
-    | otherwise            = head xs : p15helper (tail xs) every (count + 1)
+--P27
+--I don't want to do this problem
 
---P17
-split :: [a] -> Int -> ([a], [a])
-split xs knife = splitAt knife xs
-
---P18
-slice :: [a] -> Int -> Int -> [a]
-slice xs start stop = take (stop+1 - start) (drop (start-1) xs)
-
---P19
-rotate :: [a] -> Int -> [a]
-rotate xs r = end ++ begin
-    where 
-        begin = take r xs
-        end   = drop r xs
-
---P20
-removeAt :: [a] -> Int -> [a]
-removeAt xs k = take (k-1) xs ++ drop (k) xs
+--P28
+lengthSort :: [[a]] -> [[a]]
+lengthSort = sortBy (comparing length)
