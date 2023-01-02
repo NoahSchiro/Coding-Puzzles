@@ -58,6 +58,6 @@ largestProduct = maximum . map product
 
 main :: IO ()
 main = do
-        str <- readFile "data.txt"
-        let grid = parse str
-        print $ largestProduct $ concatMap ($grid) [horizontal, vertical, southEast, southWest]
+    str <- readFile "data.txt"
+    let grid = parse str
+    print $ largestProduct $ concatMap ($grid) [horizontal, vertical, southEast, southWest]
