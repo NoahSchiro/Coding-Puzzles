@@ -9,25 +9,13 @@ There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.
 |#
 
-(define (solve a b)
+(define result 0)
 
-	; because b is the inner loop, increment a
-	(if (> b 500)
-		(solve (+ a 1) 1)
+(for* ((a (range 1 333))
+       (b (range a (/ (- 1000 a) 2))))
+  (let ((c (- 1000 a b)))
+    (when (= (+ (* a a) (* b b)) (* c c))
+        (set! result (* a b c)))))
 
-		; Compute c
-		(let ([c (sqrt (+ (expt a 2) (expt b 2)))])
-
-			; If their sum is greater than 1000, then just increment b
-			(if (and 
-					(= (expt c 2) 
-					   (+ (expt b 2) (expt a 2))) 
-					(= (apply + (list a b c)) 1000))
-
-				;If the above is the case, we have an answer
-				(apply * (list c;a b c))
-
-				; Otherwise, continue recursion
-				(solve a (+ b 1))))))
-
-(solve 1 1)
+(display result)
+(display "\n")
