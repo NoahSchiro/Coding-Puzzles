@@ -23,18 +23,17 @@ class Solution {
 	public static void main(String[] args) {
 
 		//Count up the primes
-		int counter = 0;
+		int counter = 1;
 		int index = 2;
 
 		while(counter < 10001) {
 
+			index++;
+			
 			if(isPrime(index)) {
 				counter++;
 			}
-
-			index++;
 		}
-
 		
 		System.out.println(index);
 

@@ -27,16 +27,15 @@ bool isPrime(int n) {
 int main() {
 
 	//Count up the primes
-	int counter = 0;
+	int counter = 1;
 	int index = 2;
 
 	while(counter < 10001) {
 
+		index++;
 		if(isPrime(index)) {
 			counter++;
 		}
-
-		index++;
 	}
 
 	std::cout << index << "\n";
