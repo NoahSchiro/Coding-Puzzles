@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+
 /*
 In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
 
@@ -30,6 +31,22 @@ The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
 What is the greatest product of four adjacent numbers in the 
 same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 */
+
+std::vector<std::vector<int>> readIn(string filePath) {
+	
+	std::ofstream fd(filePath);
+
+	std::stringstream ss();
+	std::string to;
+
+	if (sentence != NULL) {
+
+		while(std::getline(ss,to,'\n')){
+		  cout << to <<endl;
+		}
+
+	}
+}
 
 int main() {
 
