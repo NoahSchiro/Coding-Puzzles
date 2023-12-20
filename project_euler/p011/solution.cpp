@@ -32,7 +32,7 @@ What is the greatest product of four adjacent numbers in the
 same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 */
 
-std::vector<std::vector<int>> readIn(string filePath) {
+std::vector<std::vector<int>> readIn(std::string filePath) {
 	
 	std::ofstream fd(filePath);
 
@@ -42,9 +42,8 @@ std::vector<std::vector<int>> readIn(string filePath) {
 	if (sentence != NULL) {
 
 		while(std::getline(ss,to,'\n')){
-		  cout << to <<endl;
+			std::cout << to << std::endl;
 		}
-
 	}
 }
 
